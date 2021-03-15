@@ -140,6 +140,38 @@ namespace SomerenUI
                     MessageBox.Show("Something went wrong while loading the rooms: " + e.Message);
                 }
             }
+            else if (panelName == "Drinks") //Room Panel
+            {
+                pnlDashboard.Hide();
+                imgDashboard.Hide();
+                pnlLecturers.Hide();
+                pnlStudents.Hide();
+                pnlRooms.Hide();
+
+                pnlDrinks.Show();
+                try
+                {
+                    DrinkService drinkService = new DrinkService();
+                    List<Drink> drinkList = drinkService.GetDrinks();
+
+
+                    listViewDrinks.Items.Clear();
+                    listViewDrinks.View = View.Details;
+
+                    foreach (Drink drink in drinkList)
+                    {
+                        ListViewItem li = new ListViewItem(drink.Token.ToString()); //first column
+                        li.SubItems.Add(drink.Name);
+                        li.SubItems.Add(drink.Stock.ToString());
+                        li.SubItems.Add(drink.Amount.ToString());
+                        listViewDrinks.Items.Add(li);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Something went wrong while loading the rooms: " + e.Message);
+                }
+            }
         }
 
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
@@ -175,6 +207,11 @@ namespace SomerenUI
         private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Rooms");
+        }
+
+        private void drinksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Drinks");
         }
     }
 }
