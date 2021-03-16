@@ -163,9 +163,6 @@ namespace SomerenUI
                     listViewDrinks.Items.Clear();
                     listViewDrinks.View = View.Details;
 
-                    string sufficient = "✔️";
-                    string insufficient = "⚠️";
-
                     foreach (Drink drink in drinkList)
                     {
                         ListViewItem li = new ListViewItem(drink.Token.ToString()); //first column
@@ -174,11 +171,11 @@ namespace SomerenUI
 
                         if (drink.Stock >= 10)
                         {
-                            li.SubItems.Add(sufficient.ToString());
+                            li.SubItems.Add("✔️");
                         }
                         else
                         {
-                            li.SubItems.Add(insufficient.ToString());
+                            li.SubItems.Add("⚠️");
 
                         }
                         listViewDrinks.Items.Add(li);
