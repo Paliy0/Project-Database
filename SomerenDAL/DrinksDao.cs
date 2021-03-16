@@ -26,6 +26,10 @@ namespace SomerenDAL
 
             foreach (DataRow dr in dataTable.Rows)
             {
+                if (dr["DrinkName"].ToString() == "Water" || dr["DrinkName"].ToString() == "Orangeade" || dr["DrinkName"].ToString() == "Cherry Juice")
+                {
+                    continue;
+                }
                 Drink drinks = new Drink()
                 {
                     Token = (int)dr["DrinkPrice"],

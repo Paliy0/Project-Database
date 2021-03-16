@@ -33,6 +33,7 @@ namespace SomerenUI
                 pnlStudents.Hide();
                 pnlLecturers.Hide();
                 pnlRooms.Hide();
+                pnlDrinks.Hide();
 
                 // show dashboard
                 pnlDashboard.Show();
@@ -45,6 +46,7 @@ namespace SomerenUI
                 imgDashboard.Hide();
                 pnlLecturers.Hide();
                 pnlRooms.Hide();
+                pnlDrinks.Hide();
 
                 // show students
                 pnlStudents.Show();
@@ -82,6 +84,7 @@ namespace SomerenUI
                 imgDashboard.Hide();
                 pnlStudents.Hide();
                 pnlRooms.Hide();
+                pnlDrinks.Hide();
 
                 // show Lecturers
                 pnlLecturers.Show();
@@ -110,12 +113,14 @@ namespace SomerenUI
                     MessageBox.Show("Something went wrong while loading the teachers: " + e.Message);
                 }
             }
-            else if (panelName == "Rooms") //Room Panel
+            else if (panelName == "Rooms")
+                //Room Panel
             {
                 pnlDashboard.Hide();
                 imgDashboard.Hide();
                 pnlLecturers.Hide();
                 pnlStudents.Hide();
+                pnlDrinks.Hide();
 
                 pnlRooms.Show();
                 try
@@ -158,12 +163,24 @@ namespace SomerenUI
                     listViewDrinks.Items.Clear();
                     listViewDrinks.View = View.Details;
 
+                    string sufficient = "✔️";
+                    string insufficient = "⚠️";
+
                     foreach (Drink drink in drinkList)
                     {
                         ListViewItem li = new ListViewItem(drink.Token.ToString()); //first column
                         li.SubItems.Add(drink.Name);
                         li.SubItems.Add(drink.Stock.ToString());
-                        li.SubItems.Add(drink.Amount.ToString());
+
+                        if (drink.Stock >= 10)
+                        {
+                            li.SubItems.Add(sufficient.ToString());
+                        }
+                        else
+                        {
+                            li.SubItems.Add(insufficient.ToString());
+
+                        }
                         listViewDrinks.Items.Add(li);
                     }
                 }
