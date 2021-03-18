@@ -13,7 +13,7 @@ namespace SomerenDAL
     {
         public List<Drink> GetAllDrinks()
         {
-            string query = "SELECT DrinkName, DrinkPrice, DrinkStock FROM [DRINKS] " +
+            string query = "SELECT DrinkID, DrinkName, DrinkPrice, DrinkStock FROM [DRINKS] " +
                            "WHERE DrinkStock > 1 AND DrinkPrice > 1 " +
                            "ORDER BY DrinkStock, DrinkPrice";
             SqlParameter[] sqlParameters = new SqlParameter[0];
@@ -32,6 +32,7 @@ namespace SomerenDAL
                 }
                 Drink drinks = new Drink()
                 {
+                    ID = (int)dr["DrinkID"],
                     Token = (int)dr["DrinkPrice"],
                     Name = (String)(dr["DrinkName"]),
                     Stock = (int)dr["DrinkStock"],
@@ -40,6 +41,13 @@ namespace SomerenDAL
                 drinkList.Add(drinks);
             }
             return drinkList;
+        }
+
+        public void Delete(Drink drink)
+        {
+            string query = ("DELETE FROM DRINKS WHERE DrinkID = @id");
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            ExecuteEditQuery(query, sqlParameters);
         }
     }
 }

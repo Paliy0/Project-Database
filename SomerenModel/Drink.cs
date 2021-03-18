@@ -8,6 +8,7 @@ namespace SomerenModel
 {
     public class Drink
     {
+        public int ID { get; set; }
         public string Name { get; set; }
         public int Token { get; set; }
         public int Stock { get; set; }

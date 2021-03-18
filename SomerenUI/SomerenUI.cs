@@ -14,6 +14,13 @@ namespace SomerenUI
 {
     public partial class SomerenUI : Form
     {
+        DrinkService drinkService;
+        LecturerService lecturerService;
+        RoomService roomService;
+        StudentService studentService;
+
+        List<Drink> drinkList;
+
         public SomerenUI()
         {
             InitializeComponent();
@@ -54,8 +61,8 @@ namespace SomerenUI
                 try
                 {
                     // fill the students listview within the students panel with a list of students
-                    StudentService studService = new StudentService();
-                    List<Student> studentList = studService.GetStudents();
+                    studentService = new StudentService();
+                    List<Student> studentList = studentService.GetStudents();
 
                     // clear the listiew before filling it again
                     listViewStudents.Items.Clear();
@@ -91,8 +98,8 @@ namespace SomerenUI
                 try
                 {
                     // fill the students listview within the students panel with a list of students
-                    LecturerService lecService = new LecturerService();
-                    List<Teacher> teacherList = lecService.GetTeachers();
+                    lecturerService = new LecturerService();
+                    List<Teacher> teacherList = lecturerService.GetTeachers();
 
                     // clear the listview before filling it again
                     listViewLecturers.Items.Clear();
@@ -125,7 +132,7 @@ namespace SomerenUI
                 pnlRooms.Show();
                 try
                 {
-                    RoomService roomService = new RoomService();
+                    roomService = new RoomService();
                     List<Room> roomList = roomService.GetRooms();
 
 
@@ -156,8 +163,8 @@ namespace SomerenUI
                 pnlDrinks.Show();
                 try
                 {
-                    DrinkService drinkService = new DrinkService();
-                    List<Drink> drinkList = drinkService.GetDrinks();
+                    drinkService = new DrinkService();
+                    drinkList = drinkService.GetDrinks();
 
 
                     listViewDrinks.Items.Clear();
@@ -165,8 +172,9 @@ namespace SomerenUI
 
                     foreach (Drink drink in drinkList)
                     {
-                        ListViewItem li = new ListViewItem(drink.Token.ToString()); //first column
+                        ListViewItem li = new ListViewItem(drink.ID.ToString()); //first column
                         li.SubItems.Add(drink.Name);
+                        li.SubItems.Add(drink.Token.ToString());
                         li.SubItems.Add(drink.Stock.ToString());
 
                         if (drink.Stock >= 10)
@@ -226,6 +234,17 @@ namespace SomerenUI
         private void drinksToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Drinks");
+        }
+
+        private void btnDeleteDrink_Click(object sender, EventArgs e)
+        {
+            /*
+            if (listViewDrinks.SelectedItems.Count > 0)
+            {
+                Drink drink = (Drink)listViewDrinks.SelectedItems[0].Tag;
+                drinkService.DeleteDrink(drink);
+            }
+            */
         }
     }
 }

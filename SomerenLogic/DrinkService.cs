@@ -24,5 +24,10 @@ namespace SomerenLogic
                 throw (e);
             }
         }
+
+        public void DeleteDrink(Drink drink)
+        {
+            //DrinksDao.Delete(drink);
+        }
     }
 }
