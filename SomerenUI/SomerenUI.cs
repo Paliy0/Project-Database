@@ -41,6 +41,8 @@ namespace SomerenUI
                 pnlLecturers.Hide();
                 pnlRooms.Hide();
                 pnlDrinks.Hide();
+                pnlCashRegister.Hide();
+                pnlReport.Hide();
 
                 // show dashboard
                 pnlDashboard.Show();
@@ -54,6 +56,8 @@ namespace SomerenUI
                 pnlLecturers.Hide();
                 pnlRooms.Hide();
                 pnlDrinks.Hide();
+                pnlCashRegister.Hide();
+                pnlReport.Hide();
 
                 // show students
                 pnlStudents.Show();
@@ -92,6 +96,8 @@ namespace SomerenUI
                 pnlStudents.Hide();
                 pnlRooms.Hide();
                 pnlDrinks.Hide();
+                pnlCashRegister.Hide();
+                pnlReport.Hide();
 
                 // show Lecturers
                 pnlLecturers.Show();
@@ -128,6 +134,8 @@ namespace SomerenUI
                 pnlLecturers.Hide();
                 pnlStudents.Hide();
                 pnlDrinks.Hide();
+                pnlCashRegister.Hide();
+                pnlReport.Hide();
 
                 pnlRooms.Show();
                 try
@@ -159,6 +167,8 @@ namespace SomerenUI
                 pnlLecturers.Hide();
                 pnlStudents.Hide();
                 pnlRooms.Hide();
+                pnlCashRegister.Hide();
+                pnlReport.Hide();
 
                 pnlDrinks.Show();
                 try
@@ -192,6 +202,114 @@ namespace SomerenUI
                 catch (Exception e)
                 {
                     MessageBox.Show("Something went wrong while loading the rooms: " + e.Message);
+                }
+            }
+            else if (panelName == "Cash Register")
+            {
+                pnlDashboard.Hide();
+                imgDashboard.Hide();
+                pnlLecturers.Hide();
+                pnlStudents.Hide();
+                pnlRooms.Hide();
+                pnlDrinks.Hide();
+                pnlReport.Hide();
+
+
+                pnlCashRegister.Show();
+                try
+                {
+                    drinkService = new DrinkService();
+                    drinkList = drinkService.GetDrinks();
+
+
+                    listViewDrinks2.Items.Clear();
+                    listViewDrinks2.View = View.Details;
+
+                    foreach (Drink drink in drinkList)
+                    {
+                        ListViewItem li = new ListViewItem(drink.ID.ToString()); //first column
+                        li.SubItems.Add(drink.Name);
+                        li.SubItems.Add(drink.Token.ToString());
+                        li.SubItems.Add(drink.Stock.ToString());
+                        li.Tag = drink;
+
+                        if (drink.Stock >= 10)
+                        {
+                            li.SubItems.Add("✔️");
+                        }
+                        else
+                        {
+                            li.SubItems.Add("⚠️");
+
+                        }
+                        listViewDrinks2.Items.Add(li);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Something went wrong while loading the drinks: " + e.Message);
+                }
+
+                try
+                {
+                    // fill the students listview within the students panel with a list of students
+                    studentService = new StudentService();
+                    List<Student> studentList = studentService.GetStudents();
+
+                    // clear the listiew before filling it again
+                    listViewStudents2.Items.Clear();
+                    listViewStudents2.View = View.Details;
+
+
+
+                    foreach (Student student in studentList)
+                    {
+                        ListViewItem li = new ListViewItem(student.Number.ToString()); //first column
+                        li.SubItems.Add(student.Name);
+                        li.SubItems.Add(student.LastName);
+                        li.SubItems.Add(student.BirthDate.ToString("dd/MM/yyyy"));
+                        li.Tag = student;
+                        listViewStudents2.Items.Add(li);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Something went wrong while loading the students: " + e.Message);
+                }
+
+            }
+            else if (panelName == "Report") //Room Panel
+            {
+                pnlDashboard.Hide();
+                imgDashboard.Hide();
+                pnlLecturers.Hide();
+                pnlStudents.Hide();
+                pnlRooms.Hide();
+                pnlDrinks.Hide();
+                pnlCashRegister.Hide();
+
+                pnlReport.Show();
+                try
+                {
+                    drinkService = new DrinkService();
+                    drinkList = drinkService.GetDrinks();
+
+
+                    listViewDrinks.Items.Clear();
+                    listViewDrinks.View = View.Details;
+
+                    foreach (Drink drink in drinkList)
+                    {
+                        ListViewItem li = new ListViewItem(drink.ID.ToString()); //first column
+                        li.SubItems.Add(drink.Name);
+                        li.SubItems.Add(drink.Token.ToString());
+                        li.SubItems.Add(drink.Stock.ToString());
+
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Something went wrong while loading the reports: " + e.Message);
                 }
             }
         }
@@ -231,20 +349,76 @@ namespace SomerenUI
             showPanel("Rooms");
         }
 
-        private void drinksToolStripMenuItem_Click(object sender, EventArgs e)
+        private void drinkSuppliesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Drinks");
         }
 
-        private void btnDeleteDrink_Click(object sender, EventArgs e)
+        private void revenueReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*
-            if (listViewDrinks.SelectedItems.Count > 0)
-            {
-                Drink drink = (Drink)listViewDrinks.SelectedItems[0].Tag;
-                drinkService.DeleteDrink(drink);
-            }
-            */
+            showPanel("Report");
         }
+
+        private void cashRegisterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Cash Register");
+        }
+
+        private void btnCheckout_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Student student = (Student)listViewStudents2.SelectedItems[0].Tag;
+
+                OrderService orderService = new OrderService();
+
+                foreach (ListViewItem item in listViewDrinks2.SelectedItems)
+                {
+                    orderService.CreateOrder((Drink)item.Tag, student);
+                }
+
+                MessageBox.Show("Purchase successful");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong with the purchase: " + ex.Message);
+            }
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            //retrieve data from selection validate dates and show record from database
+        }
+        /*
+        public bool CheckDates()
+        {
+            DateTime startDate = dateTimePickerStartDate.Value;
+            DateTime endDate = dateTimePickerEndDate.Value;
+
+
+            if (endDate >= startDate)
+            {
+                if (endDate.Date <= DateTime.Now.Date)
+                {
+                    btnRevenueReport.Enabled = true;
+                    lblMessage.Text = null;
+                }
+                else
+                {
+                    lblMessage.Text = "Please Choose an end date before the current date";
+                    btnRevenueReport.Enabled = false;
+                }
+
+            }
+            else
+            {
+                lblMessage.Text = "Please choose an end date after the start date";
+                btnRevenueReport.Enabled = false;
+            }
+
+            return true;
+        }
+        */
+
     }
 }

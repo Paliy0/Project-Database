@@ -10,7 +10,12 @@ namespace SomerenLogic
 {
     public class DrinkService
     {
-        DrinksDao drinksdb = new DrinksDao();
+        DrinksDao drinksdb;
+
+        public DrinkService()
+        {
+            drinksdb = new DrinksDao();
+        }
 
         public List<Drink> GetDrinks()
         {
