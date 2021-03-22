@@ -11,8 +11,38 @@ namespace SomerenLogic
 {
     public class OrderService
     {
-        public int Sold { get; set; }
+        List<Order> orders;
 
+        public int Turnover
+        {
+            get
+            {
+                int total = 0;
+                foreach (Order o in orders)
+                {
+                    total += o.Price * o.Sold;
+                }
+                return total;
+            }
+        }
+        /*
+        public int NrOfStudents
+        {
+            get
+            {
+                int count = 0;
+
+                foreach (Order o in orders)
+                {
+                    if()
+                    {
+
+                    }
+                }
+                return count;
+            }
+        }
+        */
         public OrderService()
         {
 
@@ -22,6 +52,12 @@ namespace SomerenLogic
         {
             OrderDao orderDao = new OrderDao();
             orderDao.CreateOrder(student, drink);
+        }
+
+        public void CreateReport()
+        {
+            OrderDao orderDao = new OrderDao();
+            orderDao.GetAllOrders();
         }
     }
 }

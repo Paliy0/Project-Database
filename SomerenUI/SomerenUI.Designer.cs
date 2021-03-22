@@ -82,13 +82,9 @@
             this.btnReport = new System.Windows.Forms.Button();
             this.lblEndDate = new System.Windows.Forms.Label();
             this.lblStartDate = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.datePickerEnd = new System.Windows.Forms.DateTimePicker();
+            this.datePickerStart = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.listViewReport = new System.Windows.Forms.ListView();
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.lblReport = new System.Windows.Forms.Label();
             this.pnlCashRegister = new System.Windows.Forms.Panel();
@@ -105,6 +101,11 @@
             this.BirthDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.CashRegister = new System.Windows.Forms.Label();
+            this.lblResult = new System.Windows.Forms.Label();
+            this.listViewReport = new System.Windows.Forms.ListView();
+            this.Sales = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.turnover = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.customers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.imgDashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
@@ -521,11 +522,12 @@
             // 
             // pnlReport
             // 
+            this.pnlReport.Controls.Add(this.lblResult);
             this.pnlReport.Controls.Add(this.btnReport);
             this.pnlReport.Controls.Add(this.lblEndDate);
             this.pnlReport.Controls.Add(this.lblStartDate);
-            this.pnlReport.Controls.Add(this.dateTimePicker2);
-            this.pnlReport.Controls.Add(this.dateTimePicker1);
+            this.pnlReport.Controls.Add(this.datePickerEnd);
+            this.pnlReport.Controls.Add(this.datePickerStart);
             this.pnlReport.Controls.Add(this.label1);
             this.pnlReport.Controls.Add(this.listViewReport);
             this.pnlReport.Controls.Add(this.pictureBox5);
@@ -563,19 +565,19 @@
             this.lblStartDate.TabIndex = 10;
             this.lblStartDate.Text = "Start Date";
             // 
-            // dateTimePicker2
+            // datePickerEnd
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(496, 192);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 9;
+            this.datePickerEnd.Location = new System.Drawing.Point(496, 192);
+            this.datePickerEnd.Name = "datePickerEnd";
+            this.datePickerEnd.Size = new System.Drawing.Size(200, 20);
+            this.datePickerEnd.TabIndex = 9;
             // 
-            // dateTimePicker1
+            // datePickerStart
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(496, 129);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 8;
+            this.datePickerStart.Location = new System.Drawing.Point(496, 129);
+            this.datePickerStart.Name = "datePickerStart";
+            this.datePickerStart.Size = new System.Drawing.Size(200, 20);
+            this.datePickerStart.TabIndex = 8;
             // 
             // label1
             // 
@@ -587,35 +589,6 @@
             this.label1.Size = new System.Drawing.Size(55, 17);
             this.label1.TabIndex = 7;
             this.label1.Text = "Report:";
-            // 
-            // listViewReport
-            // 
-            this.listViewReport.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10});
-            this.listViewReport.FullRowSelect = true;
-            this.listViewReport.HideSelection = false;
-            this.listViewReport.Location = new System.Drawing.Point(16, 42);
-            this.listViewReport.Name = "listViewReport";
-            this.listViewReport.Size = new System.Drawing.Size(450, 405);
-            this.listViewReport.TabIndex = 5;
-            this.listViewReport.UseCompatibleStateImageBehavior = false;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Sales";
-            this.columnHeader8.Width = 40;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "Turnover";
-            this.columnHeader9.Width = 100;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "Number of Customers";
-            this.columnHeader10.Width = 50;
             // 
             // pictureBox5
             // 
@@ -749,13 +722,50 @@
             this.CashRegister.TabIndex = 3;
             this.CashRegister.Text = "Cash Register";
             // 
+            // lblResult
+            // 
+            this.lblResult.AutoSize = true;
+            this.lblResult.Location = new System.Drawing.Point(541, 286);
+            this.lblResult.Name = "lblResult";
+            this.lblResult.Size = new System.Drawing.Size(16, 13);
+            this.lblResult.TabIndex = 13;
+            this.lblResult.Text = "...";
+            // 
+            // listViewReport
+            // 
+            this.listViewReport.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Sales,
+            this.turnover,
+            this.customers});
+            this.listViewReport.FullRowSelect = true;
+            this.listViewReport.HideSelection = false;
+            this.listViewReport.Location = new System.Drawing.Point(16, 42);
+            this.listViewReport.Name = "listViewReport";
+            this.listViewReport.Size = new System.Drawing.Size(450, 405);
+            this.listViewReport.TabIndex = 5;
+            this.listViewReport.UseCompatibleStateImageBehavior = false;
+            // 
+            // Sales
+            // 
+            this.Sales.Text = "Sales";
+            // 
+            // turnover
+            // 
+            this.turnover.Text = "Turnover";
+            this.turnover.Width = 80;
+            // 
+            // customers
+            // 
+            this.customers.Text = "Number of Customers";
+            this.customers.Width = 80;
+            // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(962, 505);
-            this.Controls.Add(this.pnlCashRegister);
             this.Controls.Add(this.pnlReport);
+            this.Controls.Add(this.pnlCashRegister);
             this.Controls.Add(this.pnlDrinks);
             this.Controls.Add(this.pnlStudents);
             this.Controls.Add(this.pnlRooms);
@@ -849,10 +859,6 @@
         private System.Windows.Forms.ToolStripMenuItem revenueReportToolStripMenuItem;
         private System.Windows.Forms.Panel pnlReport;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView listViewReport;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Label lblReport;
         private System.Windows.Forms.Panel pnlCashRegister;
@@ -868,12 +874,17 @@
         private System.Windows.Forms.Button btnReport;
         private System.Windows.Forms.Label lblEndDate;
         private System.Windows.Forms.Label lblStartDate;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker datePickerEnd;
+        private System.Windows.Forms.DateTimePicker datePickerStart;
         private System.Windows.Forms.ColumnHeader drinkID;
         private System.Windows.Forms.ColumnHeader drinkName;
         private System.Windows.Forms.ColumnHeader drinkPrice;
         private System.Windows.Forms.ColumnHeader drinkStock;
+        private System.Windows.Forms.Label lblResult;
+        private System.Windows.Forms.ListView listViewReport;
+        private System.Windows.Forms.ColumnHeader Sales;
+        private System.Windows.Forms.ColumnHeader turnover;
+        private System.Windows.Forms.ColumnHeader customers;
     }
 }
 

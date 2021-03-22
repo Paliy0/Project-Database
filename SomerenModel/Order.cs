@@ -10,18 +10,12 @@ namespace SomerenModel
     {
         public int OrderId { get; set; }
 
-        public int StudentNumber { get; set; }
-
         public int DrinkID { get; set; }
 
         public int Price { get; set; }
 
-        public DateTime OrderTime { get; set; }
+        public int Sold { get; set; }
 
-        public Order(Student student, Drink drink)
-        {
-            this.StudentNumber = student.Number;
-            this.DrinkID = drink.ID;
-        }
+        //public DateTime OrderTime { get; set; }
     }   
 }

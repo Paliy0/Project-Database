@@ -18,6 +18,7 @@ namespace SomerenUI
         LecturerService lecturerService;
         RoomService roomService;
         StudentService studentService;
+        OrderService orderService;
 
         List<Drink> drinkList;
 
@@ -278,7 +279,7 @@ namespace SomerenUI
                 }
 
             }
-            else if (panelName == "Report") //Room Panel
+            else if (panelName == "Report")
             {
                 pnlDashboard.Hide();
                 imgDashboard.Hide();
@@ -289,28 +290,8 @@ namespace SomerenUI
                 pnlCashRegister.Hide();
 
                 pnlReport.Show();
-                try
-                {
-                    drinkService = new DrinkService();
-                    drinkList = drinkService.GetDrinks();
-
-
-                    listViewDrinks.Items.Clear();
-                    listViewDrinks.View = View.Details;
-
-                    foreach (Drink drink in drinkList)
-                    {
-                        ListViewItem li = new ListViewItem(drink.ID.ToString()); //first column
-                        li.SubItems.Add(drink.Name);
-                        li.SubItems.Add(drink.Token.ToString());
-                        li.SubItems.Add(drink.Stock.ToString());
-
-                    }
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show("Something went wrong while loading the reports: " + e.Message);
-                }
+                listViewReport.Items.Clear();
+                listViewReport.View = View.Details;
             }
         }
 
@@ -354,14 +335,14 @@ namespace SomerenUI
             showPanel("Drinks");
         }
 
-        private void revenueReportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            showPanel("Report");
-        }
-
         private void cashRegisterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Cash Register");
+        }
+
+        private void revenueReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Report");
         }
 
         private void btnCheckout_Click(object sender, EventArgs e)
@@ -370,7 +351,7 @@ namespace SomerenUI
             {
                 Student student = (Student)listViewStudents2.SelectedItems[0].Tag;
 
-                OrderService orderService = new OrderService();
+                orderService = new OrderService();
 
                 foreach (ListViewItem item in listViewDrinks2.SelectedItems)
                 {
@@ -387,38 +368,58 @@ namespace SomerenUI
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            //retrieve data from selection validate dates and show record from database
+            if (CheckDates())
+            {
+                try
+                {
+                    orderService = new OrderService();
+                    Order order = new Order();
+
+                    lblReport.Text = $"Sales: {order.Sold}, Turnover: {orderService.Turnover}, Number of Customers: {orderService}";
+                    /*
+                    orderService = new OrderService();
+                    List<Order> orderList = orderService.CreateReport();
+
+                    foreach (Order order in orderList)
+                    {
+                        ListViewItem li = new ListViewItem(order.Sold.ToString());
+                        li.SubItems.Add(orderService.Turnover.ToString());
+                        li.SubItems.Add(order.NrOfStudents.ToString());
+                        li.Tag = order;
+                        listViewReport.Items.Add(li);
+                    }
+                    */
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Something went wrong while loading the students: " + ex.Message);
+                }
+            }
         }
-        /*
         public bool CheckDates()
         {
-            DateTime startDate = dateTimePickerStartDate.Value;
-            DateTime endDate = dateTimePickerEndDate.Value;
-
+            DateTime startDate = datePickerStart.Value;
+            DateTime endDate = datePickerEnd.Value;
 
             if (endDate >= startDate)
             {
                 if (endDate.Date <= DateTime.Now.Date)
                 {
-                    btnRevenueReport.Enabled = true;
-                    lblMessage.Text = null;
+                    lblResult.Text = DateTime.Now.Date.ToString();
                 }
                 else
                 {
-                    lblMessage.Text = "Please Choose an end date before the current date";
-                    btnRevenueReport.Enabled = false;
+                    lblResult.Text = "Please Choose an end date before the current date";
+                    return false;
                 }
-
             }
             else
             {
-                lblMessage.Text = "Please choose an end date after the start date";
-                btnRevenueReport.Enabled = false;
+                lblResult.Text = "Please choose an end date after the start date";
+                return false;
             }
-
             return true;
         }
-        */
 
     }
 }
