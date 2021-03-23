@@ -44,6 +44,7 @@ namespace SomerenUI
                 pnlDrinks.Hide();
                 pnlCashRegister.Hide();
                 pnlReport.Hide();
+                pnlSupervisors.Hide();
 
                 // show dashboard
                 pnlDashboard.Show();
@@ -59,6 +60,7 @@ namespace SomerenUI
                 pnlDrinks.Hide();
                 pnlCashRegister.Hide();
                 pnlReport.Hide();
+                pnlSupervisors.Hide();
 
                 // show students
                 pnlStudents.Show();
@@ -99,6 +101,7 @@ namespace SomerenUI
                 pnlDrinks.Hide();
                 pnlCashRegister.Hide();
                 pnlReport.Hide();
+                pnlSupervisors.Hide();
 
                 // show Lecturers
                 pnlLecturers.Show();
@@ -137,6 +140,7 @@ namespace SomerenUI
                 pnlDrinks.Hide();
                 pnlCashRegister.Hide();
                 pnlReport.Hide();
+                pnlSupervisors.Hide();
 
                 pnlRooms.Show();
                 try
@@ -170,6 +174,7 @@ namespace SomerenUI
                 pnlRooms.Hide();
                 pnlCashRegister.Hide();
                 pnlReport.Hide();
+                pnlSupervisors.Hide();
 
                 pnlDrinks.Show();
                 try
@@ -214,6 +219,7 @@ namespace SomerenUI
                 pnlRooms.Hide();
                 pnlDrinks.Hide();
                 pnlReport.Hide();
+                pnlSupervisors.Hide();
 
 
                 pnlCashRegister.Show();
@@ -288,8 +294,24 @@ namespace SomerenUI
                 pnlRooms.Hide();
                 pnlDrinks.Hide();
                 pnlCashRegister.Hide();
+                pnlSupervisors.Hide();
 
                 pnlReport.Show();
+                listViewReport.Items.Clear();
+                listViewReport.View = View.Details;
+            }
+            else if (panelName == "Supervisors")
+            {
+                pnlDashboard.Hide();
+                imgDashboard.Hide();
+                pnlLecturers.Hide();
+                pnlStudents.Hide();
+                pnlRooms.Hide();
+                pnlDrinks.Hide();
+                pnlCashRegister.Hide();
+                pnlReport.Hide();
+
+                pnlSupervisors.Show();
                 listViewReport.Items.Clear();
                 listViewReport.View = View.Details;
             }
@@ -343,6 +365,11 @@ namespace SomerenUI
         private void revenueReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Report");
+        }
+
+        private void supervisorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Supervisors");
         }
 
         private void btnCheckout_Click(object sender, EventArgs e)
@@ -420,6 +447,5 @@ namespace SomerenUI
             }
             return true;
         }
-
     }
 }
