@@ -45,6 +45,7 @@ namespace SomerenUI
                 pnlCashRegister.Hide();
                 pnlReport.Hide();
                 pnlSupervisors.Hide();
+                pnlActivities.Hide();
 
                 // show dashboard
                 pnlDashboard.Show();
@@ -61,6 +62,7 @@ namespace SomerenUI
                 pnlCashRegister.Hide();
                 pnlReport.Hide();
                 pnlSupervisors.Hide();
+                pnlActivities.Hide();
 
                 // show students
                 pnlStudents.Show();
@@ -102,6 +104,7 @@ namespace SomerenUI
                 pnlCashRegister.Hide();
                 pnlReport.Hide();
                 pnlSupervisors.Hide();
+                pnlActivities.Hide();
 
                 // show Lecturers
                 pnlLecturers.Show();
@@ -141,6 +144,7 @@ namespace SomerenUI
                 pnlCashRegister.Hide();
                 pnlReport.Hide();
                 pnlSupervisors.Hide();
+                pnlActivities.Hide();
 
                 pnlRooms.Show();
                 try
@@ -175,6 +179,7 @@ namespace SomerenUI
                 pnlCashRegister.Hide();
                 pnlReport.Hide();
                 pnlSupervisors.Hide();
+                pnlActivities.Hide();
 
                 pnlDrinks.Show();
                 try
@@ -220,6 +225,7 @@ namespace SomerenUI
                 pnlDrinks.Hide();
                 pnlReport.Hide();
                 pnlSupervisors.Hide();
+                pnlActivities.Hide();
 
 
                 pnlCashRegister.Show();
@@ -295,10 +301,52 @@ namespace SomerenUI
                 pnlDrinks.Hide();
                 pnlCashRegister.Hide();
                 pnlSupervisors.Hide();
+                pnlActivities.Hide();
 
                 pnlReport.Show();
                 listViewReport.Items.Clear();
                 listViewReport.View = View.Details;
+            }
+            else if (panelName == "Activities")
+            {
+                // hide all other panels
+                pnlDashboard.Hide();
+                imgDashboard.Hide();
+                pnlStudents.Hide();
+                pnlLecturers.Hide();
+                pnlRooms.Hide();
+                pnlDrinks.Hide();
+                pnlCashRegister.Hide();
+                pnlReport.Hide();
+
+                // show activities
+                pnlActivities.Show();
+
+                try
+                {
+
+                    ActivityService activityService = new ActivityService();
+                    List<Activity> ActivityList = activityService.GetActivities();
+
+                    // clear the listiew before filling it again
+                    listViewActivities.Items.Clear();
+                    listViewActivities.View = View.Details;
+
+
+
+                    foreach (Activity activities in ActivityList)
+                    {
+                        ListViewItem li = new ListViewItem(activities.ID.ToString()); //first column
+                        li.SubItems.Add(activities.Description);
+                        li.SubItems.Add(activities.StartDate.ToString("dd/MM/yyyy"));
+                        li.SubItems.Add(activities.EndDate.ToString("dd/MM/yyyy"));
+                        listViewActivities.Items.Add(li);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Something went wrong while loading the Activities: " + e.Message);
+                }
             }
             else if (panelName == "Supervisors")
             {
@@ -310,10 +358,35 @@ namespace SomerenUI
                 pnlDrinks.Hide();
                 pnlCashRegister.Hide();
                 pnlReport.Hide();
+                pnlActivities.Hide();
 
                 pnlSupervisors.Show();
                 listViewReport.Items.Clear();
                 listViewReport.View = View.Details;
+
+                try
+                {
+                    lecturerService = new LecturerService();
+                    List<Teacher> teacherList = lecturerService.GetTeachers();
+
+                    // clear the listview before filling it again
+                    listViewLecturers.Items.Clear();
+                    listViewLecturers.View = View.Details;
+
+
+                    foreach (Teacher teacher in teacherList)
+                    {
+                        ListViewItem li = new ListViewItem(teacher.Number.ToString()); //first column
+                        li.SubItems.Add(teacher.Name);
+                        li.SubItems.Add(teacher.LastName);
+                        li.SubItems.Add(teacher.Supervisor);
+                        listViewLecturers.Items.Add(li);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Something went wrong while loading the teachers: " + e.Message);
+                }
             }
         }
 
@@ -367,9 +440,14 @@ namespace SomerenUI
             showPanel("Report");
         }
 
-        private void supervisorsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void supervisorsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             showPanel("Supervisors");
+        }
+
+        private void activitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Activities");
         }
 
         private void btnCheckout_Click(object sender, EventArgs e)
