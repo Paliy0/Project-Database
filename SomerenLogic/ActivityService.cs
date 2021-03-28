@@ -31,5 +31,22 @@ namespace SomerenLogic
             }
         }
 
+        public void ChangeActivity(Activity activities)
+        {
+
+            activitiesdb.Change(activities);
+        }
+
+        public void DeleteActivity(Activity activities)
+        {
+
+            activitiesdb.Delete(activities);
+        }
+
+        public void AddActivity(Activity activities)
+        {
+
+            activitiesdb.Add(activities);
+        }
     }
 }

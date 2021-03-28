@@ -19,6 +19,7 @@ namespace SomerenUI
         RoomService roomService;
         StudentService studentService;
         OrderService orderService;
+        ActivityService activityService;
 
         List<Drink> drinkList;
 
@@ -524,6 +525,59 @@ namespace SomerenUI
                 return false;
             }
             return true;
+        }
+
+        private void btnChangeActivity_Click(object sender, EventArgs e)
+        {
+            if (listViewActivities.SelectedItems.Count > 0)
+                return;
+
+            Activity activities = (Activity)listViewActivities.SelectedItems[0].Tag;
+
+            activities.Description = txtDescription.Text;
+            activities.StartDate = DateTime.Parse(txtStart.Text);
+            activities.EndDate = DateTime.Parse(txtEnd.Text);
+
+            activityService.ChangeActivity(activities);
+
+            List<Activity> ActivityList = activityService.GetActivities();
+        }
+
+        private void listViewActivities_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewActivities.SelectedItems.Count >= 0)
+            {
+                Activity activities = (Activity)listViewActivities.SelectedItems[0].Tag;
+
+                txtDescription.Text = activities.Description;
+                txtStart.Text = activities.StartDate.ToString();
+                txtEnd.Text = activities.EndDate.ToString();
+            }
+
+        }
+
+        private void btnDeleteActivity_Click(object sender, EventArgs e)
+        {
+            if (listViewActivities.SelectedItems.Count > 0)
+            {
+                Activity activities = (Activity)listViewActivities.SelectedItems[0].Tag;
+
+                activityService.DeleteActivity(activities);
+
+                List<Activity> ActivityList = activityService.GetActivities();
+            }
+
+        }
+
+        private void btnAddActivity_Click(object sender, EventArgs e)
+        {
+            Activity activities = new Activity();
+
+            activities.Description = txtDescription.Text;
+            activities.StartDate = DateTime.Parse(txtStart.Text);
+            activities.EndDate = DateTime.Parse(txtEnd.Text);
+
+            activityService.AddActivity(activities);
         }
     }
 }

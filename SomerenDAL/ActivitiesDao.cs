@@ -28,10 +28,10 @@ namespace SomerenDAL
 
                 Activity activities = new Activity()
                 {
-                    ID = (int)dr["DrinkID"],
-                    Description = (string)dr["DrinkPrice"],
-                    StartDate = (DateTime)(dr["DrinkName"]),
-                    EndDate = (DateTime)(dr["DrinkName"]),
+                    ID = (int)dr["ActivityID"],
+                    Description = (string)dr["ActivityDescription"],
+                    StartDate = (DateTime)(dr["StartDateTime"]),
+                    EndDate = (DateTime)(dr["EndDateTime"]),
 
                 };
                 ActivityList.Add(activities);
@@ -39,7 +39,27 @@ namespace SomerenDAL
             return ActivityList;
         }
 
+        public void Change(Activity activities)
+        {
+            string query = ("UPDATE ACTIVITIES SET ActivityDescription = @ActivityDescription, StartDateTime = @StartDateTime," +
+                "EndDateTime = @EndDateTime WHERE ActivityID =@ActivityID ");
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            ExecuteEditQuery(query, sqlParameters);
+        }
 
+        public void Delete(Activity activities)
+        {
+            string query = ("DELETE FROM ACTIVITIES WHERE ActivityID =@ActivityID ");
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            ExecuteEditQuery(query, sqlParameters);
+        }
 
+        public void Add(Activity activities)
+        {
+            string query = ("INSERT INTO ACTIVITIES (ActivityDescription, StartDateTime, EndDateTime)" +
+                "VALUES (@ActivityDescription, @StartDateTime, @EndDateTime) ");
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            ExecuteEditQuery(query, sqlParameters);
+        }
     }
 }
