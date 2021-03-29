@@ -39,20 +39,20 @@ namespace SomerenDAL
             return SupervisorList;
         }
 
-        public void AddSupervisor(Teacher supervisor, Activity activity)
+        public void AddSupervisor(Supervisor supervisor, Activity activity)
         {
-            string query = "INSERT INTO [ActivitySupervisor] (ActivityID, TeacherID) Values(@activity_Id, @teacher_Id)";
+            string query = "INSERT INTO [ActivitySupervisor] (ActivityID, TeacherID) Values(@ActivityID, @TeacherID)";
 
             SqlParameter[] paramaters = {
                 new SqlParameter("ActivityID", activity.ID),
-                new SqlParameter("TeacherID", supervisor.Supervisor),
+                new SqlParameter("TeacherID", supervisor.TeacherID),
             };
             ExecuteEditQuery(query, paramaters);
         }
 
         public void RemoveSupervisor(Supervisor supervisor, Activity activity)
         {
-            string query = "DELETE FROM [ActivitySupervisor] WHERE ActivityID = @teacher_Id AND TeacherID = @teacher_Id";
+            string query = "DELETE FROM [ActivitySupervisor] WHERE ActivityID = @ActivityID AND TeacherID = @TeacherID";
             SqlParameter[] parameters =
             {
                 new SqlParameter("ActivityID", activity.ID),

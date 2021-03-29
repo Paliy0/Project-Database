@@ -31,7 +31,7 @@ namespace SomerenLogic
             }
         }
 
-        public void AddSupervisor(Teacher supervisor, Activity activities)
+        public void AddSupervisor(Supervisor supervisor, Activity activities)
         {
             supervisordb.AddSupervisor(supervisor, activities);
         }

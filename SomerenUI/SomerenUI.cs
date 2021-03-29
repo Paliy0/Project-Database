@@ -590,6 +590,11 @@ namespace SomerenUI
                 activityService.DeleteActivity(activities);
 
                 List<Activity> ActivityList = activityService.GetActivities();
+
+                SupervisorService supervisorService = new SupervisorService();
+                List<Supervisor> SupervisorList = supervisorService.GetSupervisors();
+
+                
             }
 
         }
@@ -621,6 +626,21 @@ namespace SomerenUI
                     supervisorService.RemoveSupervisor(supervisor, activity);
                 }
             }
+            showPanel("Supervisors");
+        }
+
+        private void btnAddSupervisor_Click(object sender, EventArgs e)
+        {
+            Supervisor supervisor = (Supervisor)listViewSupervisors2.SelectedItems[0].Tag;
+            Activity activity = (Activity)listViewSupervisors.SelectedItems[0].Tag;
+
+            if (listViewSupervisors.SelectedItems.Count < 0)
+            {
+                SupervisorService supervisorService = new SupervisorService();
+
+                supervisorService.AddSupervisor(supervisor, activity);
+            }
+            showPanel("Supervisors");
         }
     }
 }
