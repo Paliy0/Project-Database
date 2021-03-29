@@ -362,31 +362,55 @@ namespace SomerenUI
                 pnlActivities.Hide();
 
                 pnlSupervisors.Show();
-                listViewReport.Items.Clear();
-                listViewReport.View = View.Details;
 
+                //display activities
                 try
                 {
-                    lecturerService = new LecturerService();
-                    List<Teacher> teacherList = lecturerService.GetTeachers();
+                    ActivityService activityService = new ActivityService();
+                    List<Activity> ActivityList = activityService.GetActivities();
 
-                    // clear the listview before filling it again
-                    listViewLecturers.Items.Clear();
-                    listViewLecturers.View = View.Details;
+                    // clear the listiew before filling it again
+                    listViewSupervisors.Items.Clear();
+                    listViewSupervisors.View = View.Details;
 
-
-                    foreach (Teacher teacher in teacherList)
+                    foreach (Activity activities in ActivityList)
                     {
-                        ListViewItem li = new ListViewItem(teacher.Number.ToString()); //first column
-                        li.SubItems.Add(teacher.Name);
-                        li.SubItems.Add(teacher.LastName);
-                        li.SubItems.Add(teacher.Supervisor);
-                        listViewLecturers.Items.Add(li);
+                        ListViewItem li = new ListViewItem(activities.ID.ToString()); //first column
+                        li.SubItems.Add(activities.Description);
+                        li.SubItems.Add(activities.StartDate.ToString("dd/MM/yyyy"));
+                        li.SubItems.Add(activities.EndDate.ToString("dd/MM/yyyy"));
+                        li.Tag = activities;
+                        listViewSupervisors.Items.Add(li);
                     }
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Something went wrong while loading the teachers: " + e.Message);
+                    MessageBox.Show("Something went wrong while loading the Activities: " + e.Message);
+                }
+
+                //display supervisors
+                try
+                {
+                    SupervisorService supervisorService = new SupervisorService();
+                    List<Supervisor> SupervisorList = supervisorService.GetSupervisors();
+
+                    // clear the listiew before filling it again
+                    listViewSupervisors2.Items.Clear();
+                    listViewSupervisors2.View = View.Details;
+
+                    foreach (Supervisor supervisor in SupervisorList)
+                    {
+                        ListViewItem li = new ListViewItem(supervisor.ActivityId.ToString()); //first column
+                        li.SubItems.Add(supervisor.TeacherID.ToString());
+                        li.SubItems.Add(supervisor.FirstName);
+                        li.SubItems.Add(supervisor.LastName);
+                        li.Tag = supervisor;
+                        listViewSupervisors2.Items.Add(li);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Something went wrong while loading the Supervisors: " + e.Message);
                 }
             }
         }
@@ -502,6 +526,7 @@ namespace SomerenUI
                 }
             }
         }
+
         public bool CheckDates()
         {
             DateTime startDate = datePickerStart.Value;
@@ -578,6 +603,24 @@ namespace SomerenUI
             activities.EndDate = DateTime.Parse(txtEnd.Text);
 
             activityService.AddActivity(activities);
+        }
+
+        private void btnDeleteSupervisor_Click(object sender, EventArgs e)
+        {
+            Supervisor supervisor = (Supervisor)listViewSupervisors2.SelectedItems[0].Tag;
+            Activity activity = (Activity)listViewSupervisors.SelectedItems[0].Tag;
+
+            if (listViewSupervisors.SelectedItems.Count > 0 && listViewSupervisors2.SelectedItems.Count > 0)
+            {
+                ActivityService activityService = new ActivityService();
+                SupervisorService supervisorService = new SupervisorService();
+
+                DialogResult confirmDelete = MessageBox.Show($"Are you sure you want to remove {supervisor.FirstName} {supervisor.LastName} from {activity.Description}?", $"Removing {supervisor.FirstName} {supervisor.LastName}", MessageBoxButtons.YesNo);
+                if (confirmDelete == DialogResult.Yes)
+                {
+                    supervisorService.RemoveSupervisor(supervisor, activity);
+                }
+            }
         }
     }
 }
