@@ -57,7 +57,6 @@ namespace SomerenUI
                 pnlReport.Hide();
                 pnlSupervisors.Hide();
                 pnlActivities.Hide();
-
                 // show dashboard
                 pnlDashboard.Show();
                 imgDashboard.Show();
@@ -74,25 +73,19 @@ namespace SomerenUI
                 pnlReport.Hide();
                 pnlSupervisors.Hide();
                 pnlActivities.Hide();
-
                 // show students
                 pnlStudents.Show();
-
                 try
                 {
-                    // fill the students listview within the students panel with a list of students
                     studentService = new StudentService();
                     List<Student> studentList = studentService.GetStudents();
 
-                    // clear the listiew before filling it again
                     listViewStudents.Items.Clear();
                     listViewStudents.View = View.Details;
 
-
-
                     foreach (Student student in studentList)
                     {
-                        ListViewItem li = new ListViewItem(student.Number.ToString()); //first column
+                        ListViewItem li = new ListViewItem(student.Number.ToString()); 
                         li.SubItems.Add(student.Name);
                         li.SubItems.Add(student.LastName);
                         li.SubItems.Add(student.BirthDate.ToString("dd/MM/yyyy"));
@@ -104,9 +97,9 @@ namespace SomerenUI
                     MessageBox.Show("Something went wrong while loading the students: " + e.Message);
                 }
             }
-            else if (panelName == "Lecturers") //Lecturer Panel
+
+            else if (panelName == "Lecturers") // Lecturer Panel
             {
-                // hide all other panels
                 pnlDashboard.Hide();
                 imgDashboard.Hide();
                 pnlStudents.Hide();
@@ -117,22 +110,18 @@ namespace SomerenUI
                 pnlSupervisors.Hide();
                 pnlActivities.Hide();
 
-                // show Lecturers
                 pnlLecturers.Show();
                 try
                 {
-                    // fill the students listview within the students panel with a list of students
                     lecturerService = new LecturerService();
                     List<Teacher> teacherList = lecturerService.GetTeachers();
 
-                    // clear the listview before filling it again
                     listViewLecturers.Items.Clear();
                     listViewLecturers.View = View.Details;
 
-
                     foreach (Teacher teacher in teacherList)
                     {
-                        ListViewItem li = new ListViewItem(teacher.Number.ToString()); //first column
+                        ListViewItem li = new ListViewItem(teacher.Number.ToString()); 
                         li.SubItems.Add(teacher.Name);
                         li.SubItems.Add(teacher.LastName);
                         li.SubItems.Add(teacher.Supervisor);
@@ -144,8 +133,8 @@ namespace SomerenUI
                     MessageBox.Show("Something went wrong while loading the teachers: " + e.Message);
                 }
             }
-            else if (panelName == "Rooms")
-                //Room Panel
+
+            else if (panelName == "Rooms")//Room Panel
             {
                 pnlDashboard.Hide();
                 imgDashboard.Hide();
@@ -163,13 +152,12 @@ namespace SomerenUI
                     roomService = new RoomService();
                     List<Room> roomList = roomService.GetRooms();
 
-
                     listViewRooms.Items.Clear();
                     listViewRooms.View = View.Details;
 
                     foreach (Room room in roomList)
                     {
-                        ListViewItem li = new ListViewItem(room.Number.ToString()); //first column
+                        ListViewItem li = new ListViewItem(room.Number.ToString()); 
                         li.SubItems.Add(room.Capacity.ToString());
                         li.SubItems.Add(room.Type.ToString());
                         listViewRooms.Items.Add(li);
@@ -180,6 +168,7 @@ namespace SomerenUI
                     MessageBox.Show("Something went wrong while loading the rooms: " + e.Message);
                 }
             }
+
             else if (panelName == "Drinks") //Room Panel
             {
                 pnlDashboard.Hide();
@@ -198,13 +187,12 @@ namespace SomerenUI
                     drinkService = new DrinkService();
                     drinkList = drinkService.GetDrinks();
 
-
                     listViewDrinks.Items.Clear();
                     listViewDrinks.View = View.Details;
 
                     foreach (Drink drink in drinkList)
                     {
-                        ListViewItem li = new ListViewItem(drink.ID.ToString()); //first column
+                        ListViewItem li = new ListViewItem(drink.ID.ToString()); 
                         li.SubItems.Add(drink.Name);
                         li.SubItems.Add(drink.Token.ToString());
                         li.SubItems.Add(drink.Stock.ToString());
@@ -226,7 +214,8 @@ namespace SomerenUI
                     MessageBox.Show("Something went wrong while loading the rooms: " + e.Message);
                 }
             }
-            else if (panelName == "Cash Register")
+
+            else if (panelName == "Cash Register") // Drinks Panel
             {
                 pnlDashboard.Hide();
                 imgDashboard.Hide();
@@ -237,7 +226,6 @@ namespace SomerenUI
                 pnlReport.Hide();
                 pnlSupervisors.Hide();
                 pnlActivities.Hide();
-
 
                 pnlCashRegister.Show();
                 try
@@ -251,7 +239,7 @@ namespace SomerenUI
 
                     foreach (Drink drink in drinkList)
                     {
-                        ListViewItem li = new ListViewItem(drink.ID.ToString()); //first column
+                        ListViewItem li = new ListViewItem(drink.ID.ToString()); 
                         li.SubItems.Add(drink.Name);
                         li.SubItems.Add(drink.Token.ToString());
                         li.SubItems.Add(drink.Stock.ToString());
@@ -276,19 +264,15 @@ namespace SomerenUI
 
                 try
                 {
-                    // fill the students listview within the students panel with a list of students
                     studentService = new StudentService();
                     List<Student> studentList = studentService.GetStudents();
 
-                    // clear the listiew before filling it again
                     listViewStudents2.Items.Clear();
                     listViewStudents2.View = View.Details;
 
-
-
                     foreach (Student student in studentList)
                     {
-                        ListViewItem li = new ListViewItem(student.Number.ToString()); //first column
+                        ListViewItem li = new ListViewItem(student.Number.ToString()); 
                         li.SubItems.Add(student.Name);
                         li.SubItems.Add(student.LastName);
                         li.SubItems.Add(student.BirthDate.ToString("dd/MM/yyyy"));
@@ -302,7 +286,8 @@ namespace SomerenUI
                 }
 
             }
-            else if (panelName == "Report")
+
+            else if (panelName == "Report") //Report Panel
             {
                 pnlDashboard.Hide();
                 imgDashboard.Hide();
@@ -318,9 +303,9 @@ namespace SomerenUI
                 listViewReport.Items.Clear();
                 listViewReport.View = View.Details;
             }
-            else if (panelName == "Activities")
+
+            else if (panelName == "Activities") // Panel Activities
             {
-                // hide all other panels
                 pnlDashboard.Hide();
                 imgDashboard.Hide();
                 pnlStudents.Hide();
@@ -330,24 +315,18 @@ namespace SomerenUI
                 pnlCashRegister.Hide();
                 pnlReport.Hide();
 
-                // show activities
                 pnlActivities.Show();
-
                 try
                 {
-
                     ActivityService activityService = new ActivityService();
                     List<Activity> ActivityList = activityService.GetActivities();
 
-                    // clear the listiew before filling it again
                     listViewActivities.Items.Clear();
                     listViewActivities.View = View.Details;
 
-
-
                     foreach (Activity activities in ActivityList)
                     {
-                        ListViewItem li = new ListViewItem(activities.ID.ToString()); //first column
+                        ListViewItem li = new ListViewItem(activities.ID.ToString()); 
                         li.SubItems.Add(activities.Description);
                         li.SubItems.Add(activities.StartDate.ToString("dd/MM/yyyy"));
                         li.SubItems.Add(activities.EndDate.ToString("dd/MM/yyyy"));
@@ -359,7 +338,8 @@ namespace SomerenUI
                     MessageBox.Show("Something went wrong while loading the Activities: " + e.Message);
                 }
             }
-            else if (panelName == "Supervisors")
+
+            else if (panelName == "Supervisors") //Superviser Panel
             {
                 pnlDashboard.Hide();
                 imgDashboard.Hide();
@@ -372,20 +352,18 @@ namespace SomerenUI
                 pnlActivities.Hide();
 
                 pnlSupervisors.Show();
-
                 //display activities
                 try
                 {
                     ActivityService activityService = new ActivityService();
                     List<Activity> ActivityList = activityService.GetActivities();
 
-                    // clear the listiew before filling it again
                     listViewSupervisors.Items.Clear();
                     listViewSupervisors.View = View.Details;
 
                     foreach (Activity activities in ActivityList)
                     {
-                        ListViewItem li = new ListViewItem(activities.ID.ToString()); //first column
+                        ListViewItem li = new ListViewItem(activities.ID.ToString()); 
                         li.SubItems.Add(activities.Description);
                         li.SubItems.Add(activities.StartDate.ToString("dd/MM/yyyy"));
                         li.SubItems.Add(activities.EndDate.ToString("dd/MM/yyyy"));
@@ -397,20 +375,18 @@ namespace SomerenUI
                 {
                     MessageBox.Show("Something went wrong while loading the Activities: " + e.Message);
                 }
-
                 //display supervisors
                 try
                 {
                     SupervisorService supervisorService = new SupervisorService();
                     List<Supervisor> SupervisorList = supervisorService.GetSupervisors();
 
-                    // clear the listiew before filling it again
                     listViewSupervisors2.Items.Clear();
                     listViewSupervisors2.View = View.Details;
 
                     foreach (Supervisor supervisor in SupervisorList)
                     {
-                        ListViewItem li = new ListViewItem(supervisor.ActivityId.ToString()); //first column
+                        ListViewItem li = new ListViewItem(supervisor.ActivityId.ToString()); 
                         li.SubItems.Add(supervisor.TeacherID.ToString());
                         li.SubItems.Add(supervisor.FirstName);
                         li.SubItems.Add(supervisor.LastName);

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SomerenUI
 {
-    public partial class LoginForm : Form
+    public partial class LoginForm : Form //our username and password still needs to be added to the database
     {
         const string USERNAME = "root";
         const string PASSWORD = "admin";

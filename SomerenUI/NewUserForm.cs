@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SomerenUI
 { 
-    public partial class NewUserForm : Form /////still need to add a code to save new username and password to the database
+    public partial class NewUserForm : Form /////still need to add a code to save new username and password to the database + license key
     {
         const string KEY = "XsZAb - tgz3PsD - qYh69un - WQCEx";
 
