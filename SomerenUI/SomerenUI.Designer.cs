@@ -108,6 +108,7 @@
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.CashRegister = new System.Windows.Forms.Label();
             this.pnlSupervisors = new System.Windows.Forms.Panel();
+            this.btnAddSupervisor = new System.Windows.Forms.Button();
             this.lblActivities2 = new System.Windows.Forms.Label();
             this.listViewSupervisors2 = new System.Windows.Forms.ListView();
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -136,7 +137,6 @@
             this.EndDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.btnAddSupervisor = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgDashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
@@ -200,19 +200,19 @@
             // dashboardToolStripMenuItem1
             // 
             this.dashboardToolStripMenuItem1.Name = "dashboardToolStripMenuItem1";
-            this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(131, 22);
+            this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.dashboardToolStripMenuItem1.Text = "Dashboard";
             this.dashboardToolStripMenuItem1.Click += new System.EventHandler(this.dashboardToolStripMenuItem1_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(128, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -502,7 +502,7 @@
             // btnDeleteDrink
             // 
             this.btnDeleteDrink.Location = new System.Drawing.Point(531, 375);
-            this.btnDeleteDrink.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDeleteDrink.Margin = new System.Windows.Forms.Padding(2);
             this.btnDeleteDrink.Name = "btnDeleteDrink";
             this.btnDeleteDrink.Size = new System.Drawing.Size(81, 30);
             this.btnDeleteDrink.TabIndex = 6;
@@ -713,7 +713,7 @@
             // btnCheckout
             // 
             this.btnCheckout.Location = new System.Drawing.Point(669, 369);
-            this.btnCheckout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCheckout.Margin = new System.Windows.Forms.Padding(2);
             this.btnCheckout.Name = "btnCheckout";
             this.btnCheckout.Size = new System.Drawing.Size(130, 49);
             this.btnCheckout.TabIndex = 8;
@@ -731,7 +731,7 @@
             this.listViewDrinks2.FullRowSelect = true;
             this.listViewDrinks2.HideSelection = false;
             this.listViewDrinks2.Location = new System.Drawing.Point(432, 42);
-            this.listViewDrinks2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listViewDrinks2.Margin = new System.Windows.Forms.Padding(2);
             this.listViewDrinks2.Name = "listViewDrinks2";
             this.listViewDrinks2.Size = new System.Drawing.Size(369, 307);
             this.listViewDrinks2.TabIndex = 7;
@@ -825,6 +825,17 @@
             this.pnlSupervisors.Size = new System.Drawing.Size(962, 481);
             this.pnlSupervisors.TabIndex = 14;
             // 
+            // btnAddSupervisor
+            // 
+            this.btnAddSupervisor.Location = new System.Drawing.Point(820, 269);
+            this.btnAddSupervisor.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAddSupervisor.Name = "btnAddSupervisor";
+            this.btnAddSupervisor.Size = new System.Drawing.Size(116, 80);
+            this.btnAddSupervisor.TabIndex = 9;
+            this.btnAddSupervisor.Text = "Add Supervisor";
+            this.btnAddSupervisor.UseVisualStyleBackColor = true;
+            this.btnAddSupervisor.Click += new System.EventHandler(this.btnAddSupervisor_Click);
+            // 
             // lblActivities2
             // 
             this.lblActivities2.AutoSize = true;
@@ -873,7 +884,7 @@
             // btnDeleteSupervisor
             // 
             this.btnDeleteSupervisor.Location = new System.Drawing.Point(820, 164);
-            this.btnDeleteSupervisor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDeleteSupervisor.Margin = new System.Windows.Forms.Padding(2);
             this.btnDeleteSupervisor.Name = "btnDeleteSupervisor";
             this.btnDeleteSupervisor.Size = new System.Drawing.Size(116, 80);
             this.btnDeleteSupervisor.TabIndex = 6;
@@ -949,7 +960,7 @@
             this.pnlActivities.Controls.Add(this.label6);
             this.pnlActivities.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlActivities.Location = new System.Drawing.Point(0, 24);
-            this.pnlActivities.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlActivities.Margin = new System.Windows.Forms.Padding(4);
             this.pnlActivities.Name = "pnlActivities";
             this.pnlActivities.Size = new System.Drawing.Size(962, 481);
             this.pnlActivities.TabIndex = 15;
@@ -1021,7 +1032,7 @@
             this.listViewActivities.FullRowSelect = true;
             this.listViewActivities.HideSelection = false;
             this.listViewActivities.Location = new System.Drawing.Point(16, 50);
-            this.listViewActivities.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewActivities.Margin = new System.Windows.Forms.Padding(4);
             this.listViewActivities.Name = "listViewActivities";
             this.listViewActivities.Size = new System.Drawing.Size(744, 253);
             this.listViewActivities.TabIndex = 5;
@@ -1047,7 +1058,7 @@
             this.pictureBox8.Image = global::SomerenUI.Properties.Resources.someren;
             this.pictureBox8.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox8.InitialImage")));
             this.pictureBox8.Location = new System.Drawing.Point(785, 16);
-            this.pictureBox8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox8.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(173, 151);
             this.pictureBox8.TabIndex = 0;
@@ -1063,17 +1074,6 @@
             this.label6.Size = new System.Drawing.Size(107, 29);
             this.label6.TabIndex = 3;
             this.label6.Text = "Activities";
-            // 
-            // btnAddSupervisor
-            // 
-            this.btnAddSupervisor.Location = new System.Drawing.Point(820, 269);
-            this.btnAddSupervisor.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAddSupervisor.Name = "btnAddSupervisor";
-            this.btnAddSupervisor.Size = new System.Drawing.Size(116, 80);
-            this.btnAddSupervisor.TabIndex = 9;
-            this.btnAddSupervisor.Text = "Add Supervisor";
-            this.btnAddSupervisor.UseVisualStyleBackColor = true;
-            this.btnAddSupervisor.Click += new System.EventHandler(this.btnAddSupervisor_Click);
             // 
             // SomerenUI
             // 

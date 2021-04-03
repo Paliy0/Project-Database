@@ -30,7 +30,17 @@ namespace SomerenUI
 
         private void SomerenUI_Load(object sender, EventArgs e)
         {
-            showPanel("Dashboard");
+            DialogResult result;
+            using (var loginForm = new LoginForm())
+                result = loginForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                showPanel("Dashboard");
+            }
+            else
+            {
+                Application.Exit();
+            }
         }
 
         private void showPanel(string panelName)
