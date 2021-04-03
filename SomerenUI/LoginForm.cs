@@ -34,5 +34,17 @@ namespace SomerenUI
                 lblError.Visible = true;
             }
         }
+
+        private void linkLabelNewUser_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            NewUserForm n = new NewUserForm();
+            n.ShowDialog();
+        }
+
+        private void linkLabelPassw_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            PasswordForgottenForm m = new PasswordForgottenForm();
+            m.ShowDialog();
+        }
     }
 }

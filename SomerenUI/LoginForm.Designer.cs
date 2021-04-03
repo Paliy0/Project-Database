@@ -35,6 +35,8 @@ namespace SomerenUI
             this.txtBoxPassw = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.lblError = new System.Windows.Forms.Label();
+            this.linkLabelPassw = new System.Windows.Forms.LinkLabel();
+            this.linkLabelNewUser = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // lblUsername
@@ -85,18 +87,43 @@ namespace SomerenUI
             // lblError
             // 
             this.lblError.AutoSize = true;
-            this.lblError.Location = new System.Drawing.Point(26, 9);
+            this.lblError.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblError.Location = new System.Drawing.Point(37, 9);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(46, 13);
             this.lblError.TabIndex = 5;
             this.lblError.Text = "ERROR";
             this.lblError.Visible = false;
             // 
+            // linkLabelPassw
+            // 
+            this.linkLabelPassw.AutoSize = true;
+            this.linkLabelPassw.Location = new System.Drawing.Point(37, 123);
+            this.linkLabelPassw.Name = "linkLabelPassw";
+            this.linkLabelPassw.Size = new System.Drawing.Size(104, 13);
+            this.linkLabelPassw.TabIndex = 6;
+            this.linkLabelPassw.TabStop = true;
+            this.linkLabelPassw.Text = "Password forgotten?";
+            this.linkLabelPassw.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelPassw_LinkClicked);
+            // 
+            // linkLabelNewUser
+            // 
+            this.linkLabelNewUser.AutoSize = true;
+            this.linkLabelNewUser.Location = new System.Drawing.Point(157, 123);
+            this.linkLabelNewUser.Name = "linkLabelNewUser";
+            this.linkLabelNewUser.Size = new System.Drawing.Size(98, 13);
+            this.linkLabelNewUser.TabIndex = 7;
+            this.linkLabelNewUser.TabStop = true;
+            this.linkLabelNewUser.Text = "Register new user?";
+            this.linkLabelNewUser.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelNewUser_LinkClicked);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(308, 226);
+            this.Controls.Add(this.linkLabelNewUser);
+            this.Controls.Add(this.linkLabelPassw);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtBoxPassw);
@@ -118,5 +145,7 @@ namespace SomerenUI
         private System.Windows.Forms.TextBox txtBoxPassw;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.LinkLabel linkLabelPassw;
+        private System.Windows.Forms.LinkLabel linkLabelNewUser;
     }
 }
