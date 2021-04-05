@@ -42,57 +42,64 @@ namespace SomerenUI
             // lblUser
             // 
             this.lblUser.AutoSize = true;
-            this.lblUser.Location = new System.Drawing.Point(27, 22);
+            this.lblUser.Location = new System.Drawing.Point(36, 27);
+            this.lblUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(58, 13);
+            this.lblUser.Size = new System.Drawing.Size(77, 17);
             this.lblUser.TabIndex = 0;
             this.lblUser.Text = "Username:";
             // 
             // lblPassw
             // 
             this.lblPassw.AutoSize = true;
-            this.lblPassw.Location = new System.Drawing.Point(27, 71);
+            this.lblPassw.Location = new System.Drawing.Point(36, 87);
+            this.lblPassw.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPassw.Name = "lblPassw";
-            this.lblPassw.Size = new System.Drawing.Size(56, 13);
+            this.lblPassw.Size = new System.Drawing.Size(73, 17);
             this.lblPassw.TabIndex = 1;
             this.lblPassw.Text = "Password:";
             // 
             // txtBoxUser
             // 
-            this.txtBoxUser.Location = new System.Drawing.Point(115, 19);
+            this.txtBoxUser.Location = new System.Drawing.Point(153, 23);
+            this.txtBoxUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBoxUser.Name = "txtBoxUser";
-            this.txtBoxUser.Size = new System.Drawing.Size(163, 20);
+            this.txtBoxUser.Size = new System.Drawing.Size(216, 22);
             this.txtBoxUser.TabIndex = 2;
             // 
             // txtBoxLicense
             // 
-            this.txtBoxLicense.Location = new System.Drawing.Point(115, 117);
+            this.txtBoxLicense.Location = new System.Drawing.Point(153, 144);
+            this.txtBoxLicense.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBoxLicense.Name = "txtBoxLicense";
-            this.txtBoxLicense.Size = new System.Drawing.Size(163, 20);
+            this.txtBoxLicense.Size = new System.Drawing.Size(216, 22);
             this.txtBoxLicense.TabIndex = 3;
             // 
             // lblLicense
             // 
             this.lblLicense.AutoSize = true;
-            this.lblLicense.Location = new System.Drawing.Point(27, 120);
+            this.lblLicense.Location = new System.Drawing.Point(36, 148);
+            this.lblLicense.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLicense.Name = "lblLicense";
-            this.lblLicense.Size = new System.Drawing.Size(67, 13);
+            this.lblLicense.Size = new System.Drawing.Size(87, 17);
             this.lblLicense.TabIndex = 4;
             this.lblLicense.Text = "License key:";
             // 
             // txtBoxPassw
             // 
-            this.txtBoxPassw.Location = new System.Drawing.Point(115, 68);
+            this.txtBoxPassw.Location = new System.Drawing.Point(153, 84);
+            this.txtBoxPassw.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBoxPassw.Name = "txtBoxPassw";
             this.txtBoxPassw.PasswordChar = '*';
-            this.txtBoxPassw.Size = new System.Drawing.Size(163, 20);
+            this.txtBoxPassw.Size = new System.Drawing.Size(216, 22);
             this.txtBoxPassw.TabIndex = 5;
             // 
             // btnRegister
             // 
-            this.btnRegister.Location = new System.Drawing.Point(115, 164);
+            this.btnRegister.Location = new System.Drawing.Point(153, 202);
+            this.btnRegister.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(90, 41);
+            this.btnRegister.Size = new System.Drawing.Size(120, 50);
             this.btnRegister.TabIndex = 6;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = true;
@@ -102,18 +109,19 @@ namespace SomerenUI
             // 
             this.lblError.AutoSize = true;
             this.lblError.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblError.Location = new System.Drawing.Point(158, 140);
+            this.lblError.Location = new System.Drawing.Point(275, 181);
+            this.lblError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(74, 13);
+            this.lblError.Size = new System.Drawing.Size(94, 17);
             this.lblError.TabIndex = 7;
             this.lblError.Text = "WRONG KEY";
             this.lblError.Visible = false;
             // 
             // NewUserForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(308, 226);
+            this.ClientSize = new System.Drawing.Size(411, 278);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.txtBoxPassw);
@@ -122,6 +130,7 @@ namespace SomerenUI
             this.Controls.Add(this.txtBoxUser);
             this.Controls.Add(this.lblPassw);
             this.Controls.Add(this.lblUser);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "NewUserForm";
             this.Text = "NewUserForm";
             this.ResumeLayout(false);

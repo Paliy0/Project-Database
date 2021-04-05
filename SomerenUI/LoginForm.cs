@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SomerenLogic;
+using SomerenModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,10 +12,8 @@ using System.Windows.Forms;
 
 namespace SomerenUI
 {
-    public partial class LoginForm : Form //our username and password still needs to be added to the database
+    public partial class LoginForm : Form
     {
-        const string USERNAME = "root";
-        const string PASSWORD = "admin";
 
         public LoginForm()
         {
@@ -25,9 +25,22 @@ namespace SomerenUI
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (txtBoxUser.Text == USERNAME && txtBoxPassw.Text == PASSWORD)
+            UserService userService = new UserService();
+
+            if (txtBoxUser.Text != "" && txtBoxPassw.Text != "")
             {
-                DialogResult = DialogResult.OK;
+                if (userService.Login(txtBoxUser.Text, txtBoxPassw.Text))
+                {
+                    DialogResult = DialogResult.OK;
+                    this.Hide();
+                    //pnlDashboard.Show();
+
+                }
+                else
+                {
+                    MessageBox.Show("Check Username or Password");
+                }
+                
             }
             else
             {

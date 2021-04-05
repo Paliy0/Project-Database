@@ -556,7 +556,7 @@ namespace SomerenUI
 
         private void listViewActivities_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listViewActivities.SelectedItems.Count >= 0)
+            if (listViewActivities.SelectedItems.Count > 0)
             {
                 Activity activities = (Activity)listViewActivities.SelectedItems[0].Tag;
 
