@@ -30,6 +30,7 @@ namespace SomerenUI
 
         private void SomerenUI_Load(object sender, EventArgs e)
         {
+            /*
             DialogResult result;
             using (var loginForm = new LoginForm())
                 result = loginForm.ShowDialog();
@@ -41,6 +42,8 @@ namespace SomerenUI
             {
                 Application.Exit();
             }
+            */
+            showPanel("Dashboard");
         }
 
         private void showPanel(string panelName)
@@ -375,7 +378,24 @@ namespace SomerenUI
                 {
                     MessageBox.Show("Something went wrong while loading the Activities: " + e.Message);
                 }
+
+                if(listViewSupervisors.SelectedItems.Count > 0)
+                {
+                    //activity.ID = Convert.ToInt32(listViewSupervisors.SelectedItems[0]);
+
+                    List<Teacher> teacherList = SupervisorService
+
+                }
+
+
+
+
+
+
+
+
                 //display supervisors
+                /*
                 try
                 {
                     SupervisorService supervisorService = new SupervisorService();
@@ -398,6 +418,7 @@ namespace SomerenUI
                 {
                     MessageBox.Show("Something went wrong while loading the Supervisors: " + e.Message);
                 }
+                */
             }
         }
 

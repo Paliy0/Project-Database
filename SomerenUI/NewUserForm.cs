@@ -1,11 +1,7 @@
-﻿using System;
+﻿using SomerenLogic;
+using SomerenModel;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SomerenUI
@@ -21,8 +17,15 @@ namespace SomerenUI
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            User user = new User();
+            UserService userService = new UserService();
+
             if (txtBoxLicense.Text == KEY)
             {
+                user.Username = txtBoxUser.Text;
+                user.Password = txtBoxPassw.Text;
+                user.Admin = false;
+                userService.AddUser(user);
                 DialogResult = DialogResult.OK;
             }
             else

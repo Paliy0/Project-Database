@@ -47,7 +47,8 @@ namespace SomerenLogic
             user.Password = hashedPassword.Digest;
             user.Salt = hashedPassword.Salt;
             */
-            userdb.AddUser(user);
+            //userdb.AddUser(user);
+            userdb.AddNewUser(user);
         }
 
         public void EditPassword(string userName, string password)

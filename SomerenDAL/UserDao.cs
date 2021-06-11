@@ -22,7 +22,6 @@ namespace SomerenDAL
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
 
-
         private List<User> ReadTables(DataTable dataTable)
         {
             List<User> users = new List<User>();
@@ -48,8 +47,8 @@ namespace SomerenDAL
                            "WHERE userName = @userName, password = @password";
             SqlParameter[] sqlParameters =
             {
-                new SqlParameter("username", username),
-                new SqlParameter("password", password)
+                new SqlParameter("@username", username),
+                new SqlParameter("@password", password)
             };
             return ReadTables(ExecuteSelectQuery(query, sqlParameters))[0];
         }
@@ -85,5 +84,20 @@ namespace SomerenDAL
         {
 
         }
+
+        public void AddNewUser(User user)
+        {
+            string query = "INSERT INTO [User] (userID, userName, password, admin) " +
+                            "Values (@userid, @username, @password, @admin)";
+            SqlParameter[] sqlParameters =
+            {
+                new SqlParameter("userid", user.UserID),
+                new SqlParameter("username", user.Username),
+                new SqlParameter("password", user.Password),
+                new SqlParameter("admin", user.Admin)
+            };
+            ExecuteEditQuery(query, sqlParameters);
+        }
+
     }
 }
