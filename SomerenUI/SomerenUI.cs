@@ -30,7 +30,6 @@ namespace SomerenUI
 
         private void SomerenUI_Load(object sender, EventArgs e)
         {
-            /*
             DialogResult result;
             using (var loginForm = new LoginForm())
                 result = loginForm.ShowDialog();
@@ -42,7 +41,6 @@ namespace SomerenUI
             {
                 Application.Exit();
             }
-            */
             showPanel("Dashboard");
         }
 
@@ -379,23 +377,6 @@ namespace SomerenUI
                     MessageBox.Show("Something went wrong while loading the Activities: " + e.Message);
                 }
 
-                if(listViewSupervisors.SelectedItems.Count > 0)
-                {
-                    //activity.ID = Convert.ToInt32(listViewSupervisors.SelectedItems[0]);
-
-                    List<Teacher> teacherList = SupervisorService
-
-                }
-
-
-
-
-
-
-
-
-                //display supervisors
-                /*
                 try
                 {
                     SupervisorService supervisorService = new SupervisorService();
@@ -406,7 +387,7 @@ namespace SomerenUI
 
                     foreach (Supervisor supervisor in SupervisorList)
                     {
-                        ListViewItem li = new ListViewItem(supervisor.ActivityId.ToString()); 
+                        ListViewItem li = new ListViewItem(supervisor.ActivityId.ToString());
                         li.SubItems.Add(supervisor.TeacherID.ToString());
                         li.SubItems.Add(supervisor.FirstName);
                         li.SubItems.Add(supervisor.LastName);
@@ -418,7 +399,12 @@ namespace SomerenUI
                 {
                     MessageBox.Show("Something went wrong while loading the Supervisors: " + e.Message);
                 }
-                */
+
+                if (listViewSupervisors.SelectedItems.Count > 0)
+                {
+                    
+
+                }
             }
         }
 
@@ -622,7 +608,7 @@ namespace SomerenUI
             Supervisor supervisor = (Supervisor)listViewSupervisors2.SelectedItems[0].Tag;
             Activity activity = (Activity)listViewSupervisors.SelectedItems[0].Tag;
 
-            if (listViewSupervisors.SelectedItems.Count > 0 && listViewSupervisors2.SelectedItems.Count > 0)
+            if (listViewSupervisors2.SelectedItems.Count > 0)
             {
                 ActivityService activityService = new ActivityService();
                 SupervisorService supervisorService = new SupervisorService();
