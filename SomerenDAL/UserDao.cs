@@ -45,7 +45,7 @@ namespace SomerenDAL
         public User userLogin(string username, string password)
         {
             string query = "SELECT userName, password, secretQuestion, secretAnswer, Admin FROM [User] " +
-                           "WHERE userName = @username, password = @password";
+                           "WHERE userName = @userName, password = @password";
             SqlParameter[] sqlParameters =
             {
                 new SqlParameter("username", username),
@@ -56,11 +56,11 @@ namespace SomerenDAL
 
         public void AddUser(User user)
         {
-            string query = "INSERT INTO [Users] (Username, Password, SecretQuestion, SecretAnswer, Admin) " +
-                            "Values (@username, @password, @salt, @secretQuestion, @secretAnswer, @Admin) ";
+            string query = "INSERT INTO [Users] (userName, Password, SecretQuestion, SecretAnswer, Admin) " +
+                            "Values (@userName, @password, @salt, @secretQuestion, @secretAnswer, @Admin) ";
             SqlParameter[] sqlParameters =
             {
-                new SqlParameter("username", user.Username),
+                new SqlParameter("userName", user.Username),
                 new SqlParameter("password", user.Password),
                 new SqlParameter("salt", user.Salt),
                 new SqlParameter("secretQuestion", user.SecretQuestion),
@@ -72,10 +72,10 @@ namespace SomerenDAL
 
         public void EditPassword(string userName, string password)
         {
-            string query = "UPDATE [Users] SET Password = @password, WHERE Username = @username";
+            string query = "UPDATE [Users] SET Password = @password, WHERE userName = @userName";
             SqlParameter[] sqlParameters =
             {
-                new SqlParameter("username", userName),
+                new SqlParameter("userName", userName),
                 new SqlParameter("password", password)
             };
             ExecuteEditQuery(query, sqlParameters);

@@ -26,7 +26,7 @@ namespace SomerenUI
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (txtBoxAnswer.Text == secretAnswerPiet || txtBoxAnswer.Text == secretAnswerRita)
+            if (txtAnswer.Text == secretAnswerPiet || txtAnswer.Text == secretAnswerRita)
             {
                 DialogResult = DialogResult.OK;
                 string userName = txtBoxUser.Text;
@@ -39,6 +39,25 @@ namespace SomerenUI
             {
                 lblError.Visible = true;
             }
+        }
+
+        private void btnSecretQuestion_Click(object sender, EventArgs e)
+        {
+            if (txtBoxUser.Text == "piet@infhaarlem.nl")
+            {
+                lblQuestion.Text = "What is the name of your first pet?";
+                lblQuestion.Visible = true;
+            }
+            else if (txtBoxUser.Text == "piet@infhaarlem.nl")
+            {
+                lblQuestion.Text = "What is the street name you were born in?";
+                lblQuestion.Visible = true;
+            }
+        }
+
+        private void lblQuestion_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
